@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal University of Phnom Penh</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color:rgba(255, 192, 203, 0.279);
+            }
+
+                .container {
+            max-width: 900px; /* Consistent width */
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+                    header {
+                display: flex;
+                align-items: center; 
+                justify-content: center; 
+                gap: 20px; 
+            }
+
+            header .logo {
+                width: 100px;
+                margin: 0; 
+            }
+
+            header h1 {
+                font-size: 24px;
+                margin: 0; 
+                font-weight: bold;
+            }
+
+            .images {
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                margin: 20px 0;
+                align-items: flex-start; 
+            }
+
+            .image-item {
+                width: 30%; 
+                height: 450px; 
+                position: relative;
+                overflow: hidden;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .image-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease, filter 0.3s ease;
+            }
+
+            .image-item:hover img {
+                transform: scale(1.1);
+                filter: brightness(80%);
+            }
+
+            .image-item1 {
+                width: 70%; 
+                position: relative;
+                overflow: hidden;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                margin: 20px auto; 
+                text-align: center; 
+            }
+
+            .image-item1 img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                display: block;
+                margin-bottom: 10px; 
+            }
+
+            .image-item1 .additional-info {
+                font-size: 14px;
+                line-height: 1.6;
+                text-align: justify;
+                color: #555; 
+                padding: 10px 0;
+            }
+
+            .image-item1 .highlight {
+                font-weight: bold;
+                color: #d32f2f;
+            }
+
+            .container1 {
+        max-width: 900px; /* Match width with .container */
+        margin: auto; /* Center it */
+        display: flex;
+        flex-wrap: wrap; /* Ensure it adjusts for responsiveness */
+        gap: 20px; /* Add spacing between child elements */
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .box1 {
+        width: 40%;
+    }
+    .material-icons{
+        color: rgb(162, 162, 162);
+    }
+
+    .tappable1 {
+        margin-left: 50%;
+    }
+    .tappable2 {
+        margin-left: 46%;
+    }
+
+    .fav {
+        display: flex; 
+        align-items: center;
+        gap: 8px;
+    }
+
+    .fav .material-icons {
+        font-size: 30px; 
+        color: rgb(88, 82, 82); 
+    }
+    .box1 .container1 {
+        align-items: center;
+        display: flex;
+    }
+    .container1 .bx1 {
+        width: 50%;
+        height: 100px;
+        
+    }
+    .container1 .bx2 {
+        width: 50%;
+        height: 100px;
+        
+    }
+    .box2 {
+        flex: 1;
+        width: 60%;
+        height: auto;
+        
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.082);
+        border-radius: 8px;
+    }
+
+    .box2 .container1 {
+        display: flex;
+        align-items: flex-start; 
+        justify-content: space-between; 
+    }
+
+    .container1 .bx1 {
+        width: 30%;
+        height: auto;
+        padding-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; 
+    }
+
+    .container1 .bx2 {
+        width: 70%;
+        height: auto;
+        padding-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .box2 p a {
+        color: red;
+        
+        font-size: 16px;
+    }
+
+    .box2 p a:hover {
+        text-decoration: underline;
+    }
+
+    .webpage img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
+
+    .round {
+        color: #000; 
+        background-color: rgba(255, 192, 203, 0.3); 
+        padding: 5px;
+        border-radius: 20px;
+        font-weight: bold; 
+        display: inline-block; 
+        font-family: Arial, sans-serif; 
+    }
+    .box3 .p {
+        color: rgb(182, 177, 177);
+    }
+
+    .map {
+        display: flex;
+        align-items: center; 
+        gap: 10px; 
+    }
+
+    .phone {
+        margin-left: 50px; 
+        display: flex;
+        align-items: center; 
+        gap: 10px; 
+    }
+
+    .mail {
+        margin-left: 50px; 
+        display: flex;
+        align-items: center; 
+        gap: 10px; 
+    }
+
+    .box3 {
+        flex: 1;
+        width: 95%;
+        height: auto;
+        padding: 10px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.171);
+        border-radius: 8px;
+        display: flex; 
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+    .container1 .bx1 p {
+        display: inline; /* Make <p> inline */
+    }
+
+    .container1 .bx1 p a {
+        display: inline; /* Ensure the <a> remains inline */
+        color: red;
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+    .container1 .bx1 p a:hover {
+        text-decoration: underline;
+    }
+
+    .container2 {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    }
+
+    .header {
+    text-align: left;
+    background-color: #f8e6e8;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    height: 50px;
+    }
+
+    .header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+    color: #d50053;
+    }
+
+    .degree-level {
+    text-align: center;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Add spacing between the dot and the text */
+    }
+
+    .degree-level .dot {
+    width: 20px;
+    height: 20px;
+    background-color: #d50053;
+    border-radius: 50%;
+    flex-shrink: 0; /* Prevents the dot from shrinking */
+    }
+
+    .degree-level h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: normal;
+    }
+    .faculty-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    }
+
+    .faculty-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    }
+
+    .faculty {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .faculty h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #444;
+    }
+
+    .faculty ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    }
+
+    .faculty ul li {
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    }
+
+    .faculty ul li::before {
+    content: "✔";
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px; /* Adjust width for the circle size */
+    height: 24px; /* Adjust height for the circle size */
+    background-color: #28a745; /* Green circle background */
+    color: #fff; /* White checkmark */
+    border-radius: 50%; /* Makes the circle */
+    font-size: 14px; /* Adjust checkmark size */
+    margin-right: 10px; /* Space between circle and text */
+    }
+    .graduate-programs {
+        text-align: center;
+        font-family: 'Arial', sans-serif;
+        background-color: #fff;
+        padding: 40px 20px;
+        max-width: 900px;
+    margin: auto;
+    }
+
+    .icon-circle {
+        width: 40px;
+        height: 40px;
+        background-color: #f4cccc;
+        border-radius: 50%;
+        margin: 0 auto 10px;
+    }
+
+    h1 {
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .program-links a {
+        display: block;
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
+        text-decoration: none;
+        margin-bottom: 10px;
+        transition: color 0.3s;
+    }
+
+    .program-links a:hover {
+        color: #d50053;
+    }
+
+    /* .feedback-btn {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s, box-shadow 0.3s;
+        margin: 20px 0;
+    }
+
+    .feedback-btn:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-info {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #555;
+        line-height: 1.8;
+    }
+
+    .contact-info .icon {
+        font-size: 18px;
+        margin-right: 8px;
+        vertical-align: middle;
+    } */
+    .contact-info {
+    text-align: left; 
+    margin-left: 20px; 
+    font-size: 16px; 
+    color: #333;
+    line-height: 1.8; 
+}
+
+.icon {
+    margin-right: 8px; 
+}
+.inline-container {
+    display: flex; /* Makes the children inline and aligned */
+    align-items: center; /* Vertically align items */
+    justify-content: center; /* Center horizontally */
+    gap: 15px; /* Space between the circle and the text */
+}
+
+.icon-circle {
+    width: 20px; /* Adjust circle size */
+    height: 20px;
+    background-color: #d26b6b; /* Circle color */
+    border-radius: 50%; /* Makes it a perfect circle */
+    margin-right: auto;
+}
+
+h1 {
+    font-size: 24px; /* Adjust font size */
+    font-family: 'Georgia', serif; /* Customize font */
+    margin: auto;
+    margin-left: 100px;
+    color: #333; /* Text color */
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://media.startupcambodia.gov.kh/platform/core/stakeholder/logos/967f53b3-7da8-4bf0-80fb-6a5dfc1f78f2.jpg" alt="University Logo" class="logo">
+            <h1>Cambodia Academy of  Digital Technology (CADT)</h1>
+        </header>
+
+        <section class="main-content">
+            <div class="images">
+                <div class="image-item">
+                    <img src="https://i.ytimg.com/vi/zfMH_JTMVMs/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDTKjVLDUbOvZ_iGnT-BlJaM31fXw" alt="University Building 1">
+                </div>
+                <div class="image-item1">
+                    <img src="https://cadt.edu.kh/wp-content/uploads/2024/06/Our-10th-Anniversary-Celebration-scaled.webp" alt="University Campus">
+                    <p class="additional-info">
+                        <span class="highlight">The Cambodia Academy of Digital Technology (CADT)</span>  is a prominent educational institution focused on advancing digital technology and innovation in Cambodia. 
+                    </p>
+                </div>
+            </div>
+        </section>
+        <p class="additional-info">
+          CADT, formerly known as NIPTICT, was rebranded in November 2021. Its mission is to provide high-quality education and training in digital technology while promoting research and innovation to support the development of Cambodia's digital economy and society.
+        </p>
+    </div>
+    <div class="container1">
+        <div class="box1">
+            <div>
+                <i class="material-icons">star</i>
+                <i class="material-icons">star</i>
+                <i class="material-icons">star</i>
+                <i class="material-icons">star</i>
+                <i class="material-icons">star</i>
+            </div>
+            <p> Average ranting : 4.5</p>
+            <div class="fav">
+                <i class="material-icons">favorite</i>
+                <p>Total favorite : 123</p>
+            </div>
+            <div class="container">
+                <div class="bx1">
+                    <p>Found :</p>
+                    <p>Acronym :</p>
+                </div>
+                <div class="bx2">
+                    <p>2003</p>
+                    <p>CADT</p>
+                </div>
+            </div>
+                
+        </div>
+        <div class="box2">
+            <div class="container">
+                <div class="bx1">
+                    <p>Name : <a href="https://www.rupp.edu.kh/"> Cambodia Academy Digital Technology </a></p>
+                    <p>Latin Name : <a href="https://www.rupp.edu.kh/">    បណ្ឌិត្យសភាបច្ចេកវិទ្យា​ឌីជីថលកម្ពុជា</a></p>
+                    <p>Web page :</p>
+                </div>
+                <div class="bx2">
+                    <div class="webpage">
+                        <img src="/IMG/Image/CADTimage.png" alt="" width="100%">
+                    </div>
+                </div>
+            </div>
+            <div class="box3">
+                <h4 class="round">University Location</h4>
+                <h4>Address :</h4>
+                <p class="p">
+                  Bridge 2, National Road 6A, Sangkat Prek Leap, Khan Chroy Changva, Phnom Penh
+                </p>
+                <div class="map">
+                    <h4>Map :</h4>
+                    <p>
+                        <a href="https://www.rupp.edu.kh/">   បណ្ឌិត្យសភាបច្ចេកវិទ្យាឌីជីថលកម្ពុជា</a>
+                    </p>
+                </div>
+                <div class="phone">
+                    <i class="material-icons">phone</i>
+                    <p>015 335 877</p>
+                </div>
+                <div class="mail">
+                    <i class="material-icons">email</i>
+                    <p>pr@cadt.edu.kh</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container2">
+        <div class="header">
+          <h1>Degree Level</h1>
+        </div>
+        <div class="degree-level">
+            <span class="dot"></span>
+            <h2>Bachelor</h2>
+          </div>      
+        <div class="faculty-container">
+          <div class="faculty-row">
+            <div class="faculty">
+              <h3>Institute of Digital Technology (IDT)</h3>
+              <ul>
+                <li>Bachelor of Computer Science</li>
+                <li>Bachelor of Data Science</li>
+                <li>Bachelor of Digital Media</li>
+                <li>Bachelor of Cybersecurity</li>
+              </ul>
+            </div>
+            <div class="faculty">
+              <h3>Institute of Digital Governance (IDG)</h3>
+              <ul>
+                <li>Digital Governance Training</li>
+                <li>Technology Transformation for Government Agencies</li>
+                
+              </ul>
+            </div>
+          </div>
+          <div class="faculty-row">
+            <div class="faculty">
+              <h3>Institute of Digital Research and Innovation (IDRI)</h3>
+              <ul>
+                <li>Artificial Intelligence</li>
+                <li>Internet of Things (IoT)</li>
+                <li>Digital Policy Research</li>
+                
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="graduate-programs">
+        <div class="degree-level">
+            <span class="dot"></span>
+            <h2>Graduate Programs</h2>
+          </div>       
+        <div class="program-links">
+            <a href="/Front-End/Master_of_CADT.html">Master's Degree</a>
+        </div>
+        <!-- <button class="feedback-btn">Feedback Error</button> -->
+        <div class="contact-info">
+            <p><span class="icon">🌐</span> Royal University of Phnom Penh</p>
+            <p><span class="icon">📘</span> Royal University of Phnom Penh's Facebook page</p>
+            <p><span class="icon">📞</span> 855-23-883-640 | 855-23-880-116</p>
+            <p><span class="icon">📧</span> info@rupp.edu.kh</p>
+        </div>
+    </div><hr>
+    
+</body>
+</html>

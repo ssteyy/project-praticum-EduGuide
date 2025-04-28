@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* Reset basic styles */
+        body, h1, input, button, a {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #4CAF50, #009688);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Container styling */
+        .container {
+            width: 350px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 30px 20px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Input container styling */
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group img {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            width: 20px;
+            opacity: 0.5;
+        }
+
+        .input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            background-color: #fff; /* Maintain consistent background */
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px 10px 10px 40px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border 0.3s;
+        }
+
+        .input-group input:focus {
+            border: 1px solid #4CAF50;
+            outline: none;
+        }
+
+        /* Toggle Password Icon */
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            font-size: 18px;
+        }
+
+        .toggle-password:hover {
+            color: #4CAF50;
+        }
+
+        /* Button styling */
+        button {
+            width: 100%;
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background: #45A049;
+            
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #009688;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #00796B;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Login</h1>
+        <div class="login-container">
+            <div class="input-group">
+                <img src="https://cdn-icons-png.flaticon.com/512/709/709722.png" alt="Email Icon">
+                <input type="username" id="username" placeholder="Enter your username" name="username">
+            </div>
+
+            <div class="input-group">
+                <img src="https://cdn-icons-png.flaticon.com/512/891/891399.png" alt="Password Icon">
+                <input type="password" id="psw" placeholder="Enter your password" aria-label="Password">
+                <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
+            </div>
+
+            <button class="login-button">Login</button>
+            <div class="footer">
+                <span>Don't have an account? </span>
+                <a href="{% url 'signup' %}">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password toggle functionality
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('psw');
+
+        togglePassword.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+
+            // Toggle the Font Awesome classes
+            togglePassword.classList.toggle('fa-eye');
+            togglePassword.classList.toggle('fa-eye-slash');
+        });
+
+    </script>
+</body>
+</html>
