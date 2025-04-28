@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doctoral Programs</title>
+
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #fff;
+        margin: 0;
+        padding: 20px;
+      }
+      
+      .container {
+        max-width: 1000px;
+        margin: auto;
+        text-align: center;
+      }
+      
+      .back-button {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+      
+      h1 {
+        color: green;
+        font-weight: bold;
+        margin-bottom: 40px;
+      }
+      
+      .card-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+      
+      .card {
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        padding: 20px;
+        width: 250px;
+        transition: transform 0.3s;
+      }
+      
+      .card:hover {
+        transform: translateY(-10px);
+      }
+      
+      .card img {
+        width: 120px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+      
+      .card p {
+        font-size: 16px;
+        color: #333;
+        font-weight: 500;
+      }
+      
+</style>
+<body>
+
+<div class="container">
+  <a href="/Front-End/HomePage.html"><button class="back-button">&#8592;</button></a>
+  <h1>Doctoral Programs</h1>
+
+  <div class="card-container">
+    <div class="card">
+    <a href="/Front-End/Doctoral_RUPP.html">
+      <img src="/Images/Rupp_logo.png" alt="Royal University of Phnom Penh">
+    </a>
+      <p>Royal University of Phnom Penh (RUPP)</p>
+    </div>
+
+    <div class="card">
+        <a href="/Front-End/DC_ICT.html">
+          <img src="/Images/Institute_of_Technology_of_Cambodia_logo.png" alt="Institute Technology of Cambodia">
+        </a>
+        <p>Institute Technology of Cambodia (ITC)</p>
+      </div>
+      
+
+    <div class="card">
+        <a href="/Front-End/DC_AEU.html">
+            <img src="/Images/aeu.png" alt="Asia Euro University">
+        </a>
+      <p>Asia Euro University (AEU)</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
