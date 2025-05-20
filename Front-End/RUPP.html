@@ -736,6 +736,7 @@
                 const ratingValue = parseInt(this.getAttribute('data-id'));
                 currentRating = ratingValue;
                 updateRatingDisplay();
+
                 sendRatingToServer(ratingValue);
             });
         });
@@ -757,7 +758,7 @@
                     // 'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
                 },
                 body: JSON.stringify({
-                    rating: rating,
+                    score: rating,
                     universitie_id: universityId,
                     user_id: userId,
                 }),
@@ -841,7 +842,8 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.length > 0) {
-                        currentRating = data[0].rating;
+
+                        currentRating = data[0].score;
                         updateRatingDisplay();
                     }
                 })
