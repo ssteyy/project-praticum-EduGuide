@@ -10,7 +10,7 @@
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background-color:rgba(255, 192, 203, 0.279);
+               
             }
 
                 .container {
@@ -430,6 +430,61 @@ h1 {
     color: #333; /* Text color */
 }
 
+/* Style for the rating container */
+.rating-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Style for individual stars */
+.star {
+    width: 30px;
+    height: 30px;
+    background-color: #ccc;
+    margin-right: 5px;
+    cursor: pointer;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    transition: background-color 0.3s ease;
+}
+
+/* Style for selected stars */
+.star.selected {
+    background-color: gold;
+}
+
+/* Style for the rating text */
+.rating-text {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+/* Style for the favorite icon container */
+.favorite-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Style for the favorite heart icon */
+.favorite-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: #ccc; /* Default color */
+    transition: color 0.3s ease;
+}
+
+/* Style for the favorited state (heart turns red) */
+.favorite-icon.favorited {
+    color: red;
+}
+
+/* Style for the favorites count */
+#favorites-count {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+
 
     </style>
 </head>
@@ -459,18 +514,24 @@ h1 {
     </div>
     <div class="container1">
         <div class="box1">
-            <div>
-                <i class="material-icons">star</i>
-                <i class="material-icons">star</i>
-                <i class="material-icons">star</i>
-                <i class="material-icons">star</i>
-                <i class="material-icons">star</i>
+
+            <div class="rating-container">
+                <div class="star" data-id="1"></div>
+                <div class="star" data-id="2"></div>
+                <div class="star" data-id="3"></div>
+                <div class="star" data-id="4"></div>
+                <div class="star" data-id="5"></div>
+                <div class="rating-text">Rating: 0/5</div>
             </div>
-            <p> Average ranting : 4.5</p>
-            <div class="fav">
-                <i class="material-icons">favorite</i>
-                <p>Total favorite : 123</p>
+            
+            <!-- Favorite icon -->
+            <div class="favorite-container">
+                <span class="favorite-icon">&#10084;</span> <!-- The heart icon -->
+                <span id="favorites-count">0</span> <!-- Display favorite count -->
             </div>
+        
+
+
             <div class="container">
                 <div class="bx1">
                     <p>Found :</p>
@@ -582,7 +643,7 @@ h1 {
             <h2>Graduate Programs</h2>
           </div>       
         <div class="program-links">
-            <a href="/Front-End/Master_of_ITC.html">Master's Degree</a>
+            <a href="../Front-End/Master_of_ITC.html">Master's Degree</a>
             <a href="#">Ph.D.'s Degree</a>
         </div>
         <!-- <button class="feedback-btn">Feedback Error</button> -->
@@ -594,5 +655,105 @@ h1 {
         </div>
     </div><hr>
     
+
+    <script>
+        
+        let rating = 0;  // Store the rating
+        let favorites = 0;  // Store the number of favorites
+        
+        // Get all star elements
+        const stars = document.querySelectorAll('.star');
+        
+        // Add click event to each star
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const starId = parseInt(star.getAttribute('data-id'));
+                rating = starId;
+                updateStars();
+                calculateAverage();
+            });
+        });
+        
+        // Update the color of the stars based on the rating
+        function updateStars() {
+            stars.forEach(star => {
+                const starId = parseInt(star.getAttribute('data-id'));
+                if (starId <= rating) {
+                    star.classList.add('selected');
+                } else {
+                    star.classList.remove('selected');
+                }
+            });
+        }
+        
+        // Calculate and update the average rating and favorites count
+        function calculateAverage() {
+            // In this example, we assume the rating can be between 1 to 5
+            const totalRatings = 5; // You can adjust this based on actual ratings from users
+            const average = rating; // Here it's just the selected rating for simplicity
+            document.getElementById('average-rating').textContent = average;
+            document.getElementById('favorites-count').textContent = ++favorites;
+        }
+        
+        const ratingContainers = document.querySelectorAll('.rating-container');
+        
+        ratingContainers.forEach(container => {
+            const stars = container.querySelectorAll('.star'); 
+            const ratingText = container.querySelector('.rating-text');
+            
+            stars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    // Reset all stars
+                    stars.forEach(s => s.classList.remove('rated'));
+        
+                    // Highlight the selected stars
+                    for (let i = 0; i <= index; i++) {
+                        stars[i].classList.add('rated');
+                    }
+        
+                    // Update the rating text
+                    const rating = index + 1; 
+                    ratingText.textContent = `${rating}/5`; 
+                });
+            });
+        });
+        
+        // Add event listeners to all favorite icons
+        const favoriteIcons = document.querySelectorAll('.favorite-icon');
+        
+        favoriteIcons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                icon.classList.toggle('favorited'); 
+                if (icon.classList.contains('favorited')) {
+                    console.log('Added to favorites');
+                    calculateAverage();
+                } else {
+                    console.log('Removed from favorites');
+                    calculateAverage();
+                }
+            });
+        });
+        
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch(`http://127.0.0.1:8000/api/university/2`) // Replace with the actual university ID
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const container = document.getElementById("university-info");
+                    container.innerHTML = `
+                        <p><strong>ID:</strong> ${data.id}</p>
+                        <p><strong>Name:</strong> ${data.name}</p>
+                    `;
+                })
+                .catch(error => console.error('Error fetching university:', error));
+        });
+        </script>
 </body>
 </html>

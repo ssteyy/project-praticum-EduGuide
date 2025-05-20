@@ -24,7 +24,6 @@
       max-width: 600px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       text-align: center;
-      /* margin-top: 100px; */
     }
 
     h1 {
@@ -32,7 +31,6 @@
       color: #333;
       margin-bottom: 30px;
       font-weight: bold;
-      text-align: center;
       color: #4CAF50;
       letter-spacing: 1px;
     }
@@ -147,20 +145,47 @@
       <label for="feedback">Your Feedback</label>
       <textarea id="feedback" name="feedback" placeholder="Tell us your thoughts..." required></textarea>
 
+      <!-- Hidden User ID field -->
+      <input type="hidden" id="user_id" name="user_id" value="1"> <!-- Replace with actual dynamic user ID -->
+
       <button type="submit">Submit Feedback</button>
     </form>
   </div>
 
   <script>
-    document.getElementById('feedback-form').addEventListener('submit', function (e) {
+    document.getElementById('feedback-form').addEventListener('submit', async function (e) {
       e.preventDefault(); // Prevent form submission
       const feedback = document.getElementById('feedback').value;
+      const userId = document.getElementById('user_id').value;
 
-      if (feedback) {
-        alert('Thank you for your feedback!');
-        this.reset(); // Reset form after successful submission
-      } else {
+      if (!feedback || !userId) {
         alert('Please fill out all fields.');
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:8000/api/feedback', { // Change URL if needed
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message: feedback,
+            user_id: parseInt(userId)
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert('Thank you for your feedback!');
+          this.reset(); // Reset form after successful submission
+        } else {
+          alert('Error: ' + data.message);
+        }
+      } catch (error) {
+        console.error('Error submitting feedback:', error);
+        alert('Something went wrong. Please try again.');
       }
     });
   </script>

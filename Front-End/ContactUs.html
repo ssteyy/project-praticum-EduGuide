@@ -129,51 +129,124 @@
 </head>
 <body>
     <div class="form-container">
-        <a href="/Front-End/HomePage.html" class="back-arrow">&#8592;</a>
-        <h2>Contact Us</h2>
-        <form id="contactForm">
-            <div class="form-group">
-                <label for="email">Email Address<span class="error">*</span></label>
-                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-            </div>
-            <div class="form-group">
-                <label for="university">University<span class="error">*</span></label>
-                <input type="text" id="university" name="university" placeholder="Enter university name" required>
-            </div>
-            <div class="form-group">
-                <label for="major">Major you want to study<span class="error">*</span></label>
-                <input type="text" id="major" name="major" placeholder="Enter your desired major" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Describe<span class="error">*</span></label>
-                <textarea id="description" name="description" placeholder="Tell us more about your inquiry" required></textarea>
-            </div>
-            <button type="submit">Contact me now</button>
-        </form>
-    </div>
+      <a href="../Front-End/HomePage.html" class="back-arrow">&#8592;</a>
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="email">Email Address<span class="error">*</span></label>
+          <input type="email" id="email" name="email" placeholder="Enter your email address" required />
+        </div>
+        <div class="form-group">
+          <label for="university">University<span class="error">*</span></label>
+          <select id="university" name="university" required>
+            <option value="">Select a university</option>
+          </select>
+      </div>
 
-    <script>
-        
-            // Adding form functionality
-            const form = document.getElementById('contactForm');
-        
-            form.addEventListener('submit', (e) => {
-              e.preventDefault();
-        
-              const email = document.getElementById('email').value;
-              const university = document.getElementById('university').value;
-              const major = document.getElementById('major').value;
-              const description = document.getElementById('description').value;
-        
-              // Validate input (optional)
-              if (email && university && major && description) {
-                alert(`Thank you for contacting us!\n\nEmail: ${email}\nUniversity: ${university}\nMajor: ${major}\nDescription: ${description}`);
-                form.reset(); // Clear the form after submission
-              } else {
-                alert('Please fill in all required fields!');
-              }
-            });
-          
-    </script>
-</body>
+      <div class="form-group">
+          <label for="major">Major you want to study<span class="error">*</span></label>
+          <select id="major" name="major" required>
+          <option value="">Select a major </option>
+          </select>
+      </div>
+
+        <div class="form-group">
+          <label for="description">Describe<span class="error">*</span></label>
+          <textarea id="description" name="description" placeholder="Tell us more about your inquiry" required></textarea>
+        </div>
+        <button type="submit">Contact me now</button>
+      </form>
+    </div>
+  
+<script>
+  const universitySelect = document.getElementById('university');
+  const majorSelect = document.getElementById('major');
+  const form = document.getElementById('contactForm');
+
+  // Load universities on page load
+  window.onload = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/api/university');
+      const data = await response.json();
+
+      data.forEach(university => {
+        const option = document.createElement('option');
+        option.value = university.id;
+        option.text = university.name;
+        universitySelect.appendChild(option);
+      });
+    } catch (error) {
+      console.error('Error loading universities:', error);
+    }
+  };
+
+  // Load majors based on selected university
+  universitySelect.addEventListener('change', async (e) => {
+    const universityId = e.target.value;
+
+    // Clear majors first
+    majorSelect.innerHTML = '<option value="">-- Select a major --</option>';
+
+    if (universityId) {
+      try {
+        const response = await fetch(`http://localhost:8000/api/university/${universityId}/majors`);
+        const data = await response.json();
+
+        data.forEach(major => {
+          const option = document.createElement('option');
+          option.value = major.major_name;
+          option.text = major.major_name;
+          majorSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error loading majors:', error);
+      }
+    }
+  });
+
+  // Form submission
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const university = universitySelect.options[universitySelect.selectedIndex].text;
+    const major = majorSelect.value;
+    const description = document.getElementById('description').value;
+
+    const user_id = 1; // replace with actual user ID if available
+
+    if (email && university && major && description) {
+      try {
+        const response = await fetch('http://localhost:8000/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            user_id: user_id,
+            major: major,
+            description: description
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert('Thank you for contacting us!\nWe have received your message.');
+          form.reset();
+          majorSelect.innerHTML = '<option value="">-- Select a major --</option>';
+        } else {
+          alert('Failed to submit: ' + result.message);
+        }
+      } catch (error) {
+        alert('Error sending data: ' + error.message);
+      }
+    } else {
+      alert('Please fill in all required fields!');
+    }
+  });
+</script>
+
+  </body>
 </html>

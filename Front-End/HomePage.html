@@ -84,6 +84,8 @@
             transition: transform 0.3s ease;
         }
 
+
+
         /* Responsive Styles */
         @media (max-width: 768px) {
             .nav-links {
@@ -176,14 +178,22 @@
             font-weight: bold;
             color: #333;
             margin-top: 10px;
-            margin-left: 550px;
+            margin-left: 800px;
             margin-bottom: 5px;
+            align-items: center;
+            
+
         }
 
         .welcome-section h1 span {
             color: #007bff;
             margin-right: 350px;
-            margin-top: 10px;
+            margin-top: 5px;
+        }
+      
+        .uni{
+            position: relative;
+            top: 5px;
         }
 
         /* Universities */
@@ -193,8 +203,14 @@
             gap: 20px;
             padding: 20px;
             flex-wrap: nowrap;
+           
+
         }
 
+        .mas{
+            position: relative;
+            top: 5px;
+        }
         .university-card {
             background-color: #fff;
             width: 30%;
@@ -402,6 +418,7 @@
         .dropdown {
             position: relative;
             display: inline-block;
+            
         }
 
         .dropdown > a {
@@ -412,6 +429,7 @@
             background-color: white;
             border-radius: 5px;
             transition: background-color 0.3s;
+           
         }
 
         .dropdown > a:hover {
@@ -428,6 +446,7 @@
             border-radius: 5px;
             overflow: hidden;
             z-index: 1;
+            margin-top: 20px;
         }
 
         .dropdown:hover .dropdown-content {
@@ -546,33 +565,33 @@
     <!-- Header -->
     <header>
         <div class="logo">
-            <img src="/Images/Logo.png" alt="EduGuide Cambodia Logo">
+            <img src="../Images/Logo.png" alt="EduGuide Cambodia Logo">
             <span>EduGuide</span>
         </div>
 
         <!-- Nav Bar -->
         <nav>
-            <a href="/Front-End/HomePage.html">Home</a>
+            <a href="../Front-End/HomePage.html">Home</a>
             <div class="dropdown">
-                <a href="#">Universities</a>
+                <a href="#" class="uni">Universities</a>
                 <div class="dropdown-content">
-                  <a href="/Front-End/RUPP.html">Royal University of Phnom Penh</a>
-                  <a href="/Front-End/ITC.html">Institute of Technology of Cambodia</a>
-                  <a href="/Front-End/CADT.html">Cambodia Academy of  Digital Technology</a>
-                  <a href="/Front-End/RULE.html">Royal University of Law and Economic</a>
-                  <a href="/Front-End/AEU.html">Asia Euro University</a>
+                  <a href="../Front-End/RUPP.html">Royal University of Phnom Penh</a>
+                  <a href="../Front-End/ITC.html">Institute of Technology of Cambodia</a>
+                  <a href="../Front-End/CADT.html">Cambodia Academy of  Digital Technology</a>
+                  <a href="../Front-End/RULE.html">Royal University of Law and Economic</a>
+                  <a href="../Front-End/AEU.html">Asia Euro University</a>
                 </div>
               </div>
             <div class="dropdown">
-                <a href="#">Graduate Programs</a>
+                <a href="#" class="mas">Graduate Programs</a>
                 <div class="dropdown-content">
-                  <a href="/Front-End/Master.html">Master's Programs</a>
-                  <a href="/Front-End/DoctoralProgram.html">Doctoral Programs (Ph.D.)</a>
+                  <a href="../Front-End/Master.html">Master's Programs</a>
+                  <a href="../Front-End/DoctoralProgram.html">Doctoral Programs (Ph.D.)</a>
                 </div>
             </div>
         
-            <a href="/Front-End/ContactUs.html">Contact</a>
-            <a href="/Front-End/AboutUs.html">About Us</a>
+            <a href="../Front-End/ContactUs.html">Contact</a>
+            <a href="../Front-End/AboutUs.html">About Us</a>
         </nav>
 
         <!-- Search Button -->
@@ -585,7 +604,7 @@
         
         <!-- Profile -->
         <div class="navbar-right">
-            <a href="/Front-End/Register.html" class="profile-link">
+            <a href="../Front-End/Register.html" class="profile-link">
                 <img src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=" 
                      alt="Profile" class="profile-icon">
             </a>
@@ -617,76 +636,76 @@
     <!-- Universities Section -->
     <section class="universities">
         <div class="university-card">
-            <span class="favorite-icon">&#10084;</span>
-            <a href="/Front-End/RUPP.html"><img src="https://upload.wikimedia.org/wikipedia/en/a/a2/RUPP_logo.PNG" alt="Royal University of Phnom Penh"></a>
+            <!-- <span class="favorite-icon">&#10084;</span> -->
+            <a href="../Front-End/RUPP.html"><img src="https://upload.wikimedia.org/wikipedia/en/a/a2/RUPP_logo.PNG" alt="Royal University of Phnom Penh"></a>
             <p>Royal University of</p>
             <p> Phnom Penh</p>
-            <div class="rating-container">
+            <!-- <div class="rating-container">
                 <span class="star" data-value="1">&#9733;</span>
                 <span class="star" data-value="2">&#9733;</span>
                 <span class="star" data-value="3">&#9733;</span>
                 <span class="star" data-value="4">&#9733;</span>
                 <span class="star" data-value="5">&#9733;</span>
                 <span class="rating-text"></span>
-            </div>            
+            </div>             -->
         </div>
 
         <div class="university-card">
-            <span class="favorite-icon">&#10084;</span>
-            <a href="/Front-End/RULE.html"><img src="https://edurank.org/assets/img/uni-logos/royal-university-of-law-and-economics-logo.png" alt="Royal University of Law and Economics"></a>
+            <!-- <span class="favorite-icon">&#10084;</span> -->
+            <a href="../Front-End/RULE.html"><img src="https://edurank.org/assets/img/uni-logos/royal-university-of-law-and-economics-logo.png" alt="Royal University of Law and Economics"></a>
             <p>Royal University of Law and Economics</p>
-            <div class="rating-container">
+            <!-- <div class="rating-container">
                 <span class="star" data-value="1">&#9733;</span>
                 <span class="star" data-value="2">&#9733;</span>
                 <span class="star" data-value="3">&#9733;</span>
                 <span class="star" data-value="4">&#9733;</span>
                 <span class="star" data-value="5">&#9733;</span>
                 <span class="rating-text"></span>
-            </div>            
+            </div>             -->
         </div>
         
         <div class="university-card">
-            <span class="favorite-icon">&#10084;</span>
-            <a href="/Front-End/ITC.html"><img src="https://upload.wikimedia.org/wikipedia/en/f/f7/Institute_of_Technology_of_Cambodia_logo.png" alt="Institute of Technology of Cambodia"></a>
+            <!-- <span class="favorite-icon">&#10084;</span> -->
+            <a href="../Front-End/ITC.html"><img src="https://upload.wikimedia.org/wikipedia/en/f/f7/Institute_of_Technology_of_Cambodia_logo.png" alt="Institute of Technology of Cambodia"></a>
             <p>Institute of </p>
             <p>Technology of Cambodia</p>
-            <div class="rating-container">
+            <!-- <div class="rating-container">
                 <span class="star" data-value="1">&#9733;</span>
                 <span class="star" data-value="2">&#9733;</span>
                 <span class="star" data-value="3">&#9733;</span>
                 <span class="star" data-value="4">&#9733;</span>
                 <span class="star" data-value="5">&#9733;</span>
                 <span class="rating-text"></span>
-            </div>            
+            </div>             -->
         </div>
 
         <div class="university-card">
-            <span class="favorite-icon">&#10084;</span>
-            <a href="/Front-End/CADT.html"><img src="https://www.cadt.edu.kh/wp-content/uploads/2023/02/cadt_square_logo_boundary.jpg" alt="Cambodia Academy of Digital Technology"></a>
+            <!-- <span class="favorite-icon">&#10084;</span> -->
+            <a href="../Front-End/CADT.html"><img src="https://www.cadt.edu.kh/wp-content/uploads/2023/02/cadt_square_logo_boundary.jpg" alt="Cambodia Academy of Digital Technology"></a>
             <p>Cambodia Academy of Digital Technology</p>
-            <div class="rating-container">
+           <!-- <div class="rating-container">
                 <span class="star" data-value="1">&#9733;</span>
                 <span class="star" data-value="2">&#9733;</span>
                 <span class="star" data-value="3">&#9733;</span>
                 <span class="star" data-value="4">&#9733;</span>
                 <span class="star" data-value="5">&#9733;</span>
                 <span class="rating-text"></span>
-            </div>            
+            </div>                   -->
         </div>
 
         <div class="university-card">
-            <span class="favorite-icon">&#10084;</span>
-            <a href="/Front-End/AEU.html"><img src="https://www.aeu.edu.kh/uoe2/images/aeu.png" alt="Asia Euro University"></a>
+            <!-- <span class="favorite-icon">&#10084;</span> -->
+            <a href="../Front-End/AEU.html"><img src="https://www.aeu.edu.kh/uoe2/images/aeu.png" alt="Asia Euro University"></a>
             <p>Asia</p>
             <p>Euro University</p>
-            <div class="rating-container">
+            <!-- <div class="rating-container">
                 <span class="star" data-value="1">&#9733;</span>
                 <span class="star" data-value="2">&#9733;</span>
                 <span class="star" data-value="3">&#9733;</span>
                 <span class="star" data-value="4">&#9733;</span>
                 <span class="star" data-value="5">&#9733;</span>
                 <span class="rating-text"></span>
-            </div>            
+            </div>             -->
         </div>
     </section>
 
@@ -739,7 +758,7 @@
 
     <!-- Faculty in Royal University of Phnom Penh (RUPP) -->
     <section class="university">
-      <h2><a href="/Front-End/Rupp.html" class="university-link">Royal University of Phnom Penh (RUPP) &#8250;</a></h2>
+      <h2><a href="../Front-End/Rupp.html" class="university-link">Royal University of Phnom Penh (RUPP) &#8250;</a></h2>
       <div class="card-container">
         <div class="scroll-container">
           <div class="card">
@@ -776,7 +795,7 @@
 
     <!-- Faculty in Institute Technology of Cambodia (ITC) -->
     <section class="university">
-      <h2><a href="/Front-End/ITC.html" class="university-link">Institute Technology of Cambodia (ITC) &#8250;</a></h2>
+      <h2><a href="../Front-End/ITC.html" class="university-link">Institute Technology of Cambodia (ITC) &#8250;</a></h2>
       <div class="card-container">
         <div class="scroll-container">
           <div class="card">
@@ -805,7 +824,7 @@
 
     <!-- Faculty in Royal University of Law and Economic (RULE) -->
     <section class="university">
-      <h2><a href="/Front-End/Rule.html" class="university-link">Royal University of Law and Economic (RULE) &#8250;</a></h2>
+      <h2><a href="../Front-End/Rule.html" class="university-link">Royal University of Law and Economic (RULE) &#8250;</a></h2>
       <div class="card-container">
         <div class="scroll-container">
           <div class="card">
@@ -831,7 +850,7 @@
     <!-- Faculty in Cambodia Academy of Digital Technology (CADT) -->
     <section class="university">
 
-      <h2><a href="/Front-End/CADT.html" class="university-link">Cambodia Academy of Digital Technology (CADT) &#8250;</a></h2>
+      <h2><a href="../Front-End/CADT.html" class="university-link">Cambodia Academy of Digital Technology (CADT) &#8250;</a></h2>
       <div class="card-container">
         <div class="scroll-container">
 
@@ -858,7 +877,7 @@
     <!-- Faculty in Asia Euro University (AEU) -->
     <section class="university">
 
-      <h2><a href="/Front-End/AEU.html" class="university-link">Asia Euro University (AEU) &#8250;</a></h2>
+      <h2><a href="../Front-End/AEU.html" class="university-link">Asia Euro University (AEU) &#8250;</a></h2>
       <div class="card-container">
         <div class="scroll-container">
 
@@ -898,9 +917,9 @@
             <div class="footer-section about">
               <h3>About</h3>
               <ul>
-                <li><a href="/Front-End/AboutUs.html">About Us</a></li>
-                <li><a href="/Front-End/ContactUs.html">Contact Us</a></li>
-                <li><a href="/Front-End/FeedBack.html">Feedback Error</a></li>
+                <li><a href="../Front-End/AboutUs.html">About Us</a></li>
+                <li><a href="../Front-End/ContactUs.html">Contact Us</a></li>
+                <li><a href="../Front-End/FeedBack.html">Feedback Error</a></li>
               </ul>
             </div>
             <div class="footer-section reference">
@@ -913,7 +932,7 @@
               </ul>
             </div>
             <div class="footer-section logo">
-              <img src="/Images/Logo.png" alt="EduGuide Logo">
+              <img src="../Images/Logo.png" alt="EduGuide Logo">
               <h3>EduGuide</h3>
               <p>in CAMBODIA</p>
             </div>

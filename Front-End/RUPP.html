@@ -10,7 +10,7 @@
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background-color:rgba(255, 192, 203, 0.279);
+                background-color:rgba(244, 244, 244, 0.279);
             }
 
                 .container {
@@ -445,21 +445,77 @@
     gap: 15px; /* Space between the circle and the text */
 }
 
-.icon-circle {
-    width: 20px; /* Adjust circle size */
-    height: 20px;
-    background-color: #d26b6b; /* Circle color */
-    border-radius: 50%; /* Makes it a perfect circle */
-    margin-right: auto;
-}
+        .icon-circle {
+            width: 20px; /* Adjust circle size */
+            height: 20px;
+            background-color: #d26b6b; /* Circle color */
+            border-radius: 50%; /* Makes it a perfect circle */
+            margin-right: auto;
+        }
 
-h1 {
-    font-size: 24px; /* Adjust font size */
-    font-family: 'Georgia', serif; /* Customize font */
-    margin: auto;
-    margin-left: 100px;
-    color: #333; /* Text color */
-}
+        h1 {
+            font-size: 24px; /* Adjust font size */
+            font-family: 'Georgia', serif; /* Customize font */
+            margin: auto;
+            margin-left: 100px;
+            color: #333; /* Text color */
+        }
+
+            /* Style for the rating container */
+        .rating-container {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style for individual stars */
+        .star {
+            width: 30px;
+            height: 30px;
+            background-color: #ccc;
+            margin-right: 5px;
+            cursor: pointer;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            transition: background-color 0.3s ease;
+        }
+
+        /* Style for selected stars */
+        .star.selected {
+            background-color: gold;
+        }
+
+        /* Style for the rating text */
+        .rating-text {
+            margin-left: 10px;
+            font-size: 16px;
+        }
+
+        /* Style for the favorite icon container */
+        .favorite-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        /* Style for the favorite heart icon */
+        .favorite-icon {
+            font-size: 30px;
+            cursor: pointer;
+            color: #ccc; /* Default color */
+            transition: color 0.3s ease;
+        }
+
+        /* Style for the favorited state (heart turns red) */
+        .favorite-icon.favorited {
+            color: red;
+        }
+
+        /* Style for the favorites count */
+        #favorites-count {
+            margin-left: 10px;
+            font-size: 16px;
+        }
+
+
 
 
     </style>
@@ -490,18 +546,23 @@ h1 {
     </div>
     <div class="container1">
         <div class="box1">
-            <div>
-                <i class="material-icons">star</i>
-                <i class="material-icons">star</i>
-                <i class="material-icons">star</i>
-                <i class="material-icons">star</i>
-                <i class="material-icons">star</i>
+
+            <div class="rating-container">
+                <div class="star" data-id="1"></div>
+                <div class="star" data-id="2"></div>
+                <div class="star" data-id="3"></div>
+                <div class="star" data-id="4"></div>
+                <div class="star" data-id="5"></div>
+                <div class="rating-text">Rating: 0/5</div>
             </div>
-            <p> Average ranting : 4.5</p>
-            <div class="fav">
-                <i class="material-icons">favorite</i>
-                <p>Total favorite : 123</p>
+            
+            <!-- Favorite icon -->
+            <div class="favorite-container">
+                <span class="favorite-icon">&#10084;</span> <!-- The heart icon -->
+                <span id="favorites-count">0</span> <!-- Display favorite count -->
             </div>
+            
+            
             <div class="container">
                 <div class="bx1">
                     <p>Found :</p>
@@ -659,5 +720,146 @@ h1 {
         </div>
     </div><hr>
     
+    <script>
+        
+        const universityId = 1; // Replace with the actual university ID
+        const userId = 1; // Replace with the actual user ID (you'll likely get this dynamically after login)
+
+        // Rating functionality (remains the same)
+        const ratingContainer = document.querySelector('.rating-container');
+        const stars = ratingContainer.querySelectorAll('.star');
+        const ratingText = ratingContainer.querySelector('.rating-text');
+        let currentRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const ratingValue = parseInt(this.getAttribute('data-id'));
+                currentRating = ratingValue;
+                updateRatingDisplay();
+                sendRatingToServer(ratingValue);
+            });
+        });
+
+        function updateRatingDisplay() {
+         stars.forEach(star => {
+              const starValue = parseInt(star.getAttribute('data-id'));
+                star.classList.toggle('selected', starValue <= currentRating);
+            });
+            ratingText.textContent = `Rating: ${currentRating}/5`;
+        }
+
+        function sendRatingToServer(rating) {
+            fetch('http://127.0.0.1:8000/api/rating', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Include your actual authentication token here, e.g.,
+                    // 'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                },
+                body: JSON.stringify({
+                    rating: rating,
+                    universitie_id: universityId,
+                    user_id: userId,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Rating submitted:', data);
+                // Optionally update UI based on the server response
+            })
+            .catch(error => {
+                console.error('Error submitting rating:', error);
+                // Optionally handle the error in the UI
+            });
+        }
+
+        // Favorite functionality
+        const favoriteContainer = document.querySelector('.favorite-container');
+        const favoriteIcon = favoriteContainer.querySelector('.favorite-icon');
+        const favoritesCountElement = document.getElementById('favorites-count');
+        let isFavorited = false; // Track the favorite state
+        let favoritesCount = 0; // Initialize favorites count
+
+        favoriteContainer.addEventListener('click', function() {
+            isFavorited = !isFavorited;
+            updateFavoriteIcon();
+            sendFavoriteToServer(isFavorited);
+        });
+
+        function updateFavoriteIcon() {
+            favoriteIcon.textContent = isFavorited ? '❤️' : '♡'; // Filled and outlined heart emojis
+            favoriteIcon.classList.toggle('favorited', isFavorited);
+            favoritesCountElement.textContent = isFavorited ? favoritesCount + 1 : Math.max(0, favoritesCount - 1); // Basic count update
+        }
+        function sendFavoriteToServer(isAdding) {
+            fetch('http://127.0.0.1:8000/api/favourite', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                  
+                },
+                body: JSON.stringify({
+                    universitie_id: universityId,
+                    user_id: userId,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(isAdding ? 'Added to favorites:' : 'Removed from favorites:', data);
+                // Optionally update UI based on the server response (e.g., update the count more accurately)
+            })
+            .catch(error => {
+                console.error('Error updating favorites:', error);
+                // Optionally handle the error in the UI (e.g., revert the icon state)
+                isFavorited = !isFavorited;
+                updateFavoriteIcon();
+            });
+        }
+
+        // Initial fetch for university details (you already had this)
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch(`http://127.0.0.1:8000/api/university/1`) // Replace with the actual university ID
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // You can use this data to pre-fill information if needed
+                    console.log('University details:', data);
+                })
+                .catch(error => console.error('Error fetching university:', error));
+
+            // Optionally fetch initial rating and favorite status for the user and university
+            fetchInitialData();
+        });
+
+        function fetchInitialData() {
+            // Example: Fetch initial rating
+            fetch(`http://127.0.0.1:8000/api/rating?universitie_id=${universityId}&user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        currentRating = data[0].rating;
+                        updateRatingDisplay();
+                    }
+                })
+                .catch(error => console.error('Error fetching initial rating:', error));
+
+            // Example: Fetch initial favorite status
+            fetch(`http://127.0.0.1:8000/api/favourite?universitie_id=${universityId}&user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        isFavorited = true;
+                        updateFavoriteIcon();
+                        favoritesCount = data.length; // Or fetch the actual count if the API returns it
+                        favoritesCountElement.textContent = favoritesCount;
+                    }
+                })
+                .catch(error => console.error('Error fetching initial favorite status:', error));
+        }
+    </script>
 </body>
 </html>
